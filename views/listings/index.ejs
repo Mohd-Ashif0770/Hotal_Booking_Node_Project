@@ -1,0 +1,143 @@
+<% layout("layouts/boilerplate") %>
+<body class="index-page">
+  <div class="index-page bg-gradient-light">
+    <div class="container py-4">
+      <div id="filters" class="glass-filter mb-4 p-3 rounded-4 shadow-sm my-class">
+        <div
+          class="d-flex flex-wrap gap-3 align-items-center justify-content-between "
+        >
+          <div class="d-flex flex-wrap gap-3" style="margin-right: -200em;">
+            <div class="filter">
+              <i class="fa-solid fa-fire"></i>
+              <p>Trending</p>
+            </div>
+            <div class="filter">
+              <i class="fa-solid fa-bed"></i>
+              <p>Rooms</p>
+            </div>
+            <div class="filter">
+              <i class="fa-solid fa-star"></i>
+              <p>Amazing</p>
+            </div>
+            <div class="filter">
+              <i class="fa-solid fa-mountain"></i>
+              <p>Mountains</p>
+            </div>
+            <div class="filter">
+              <i class="fa-solid fa-person-swimming"></i>
+              <p>Pool</p>
+            </div>
+            <div class="filter">
+              <i class="fa-solid fa-tractor"></i>
+              <p>Farms</p>
+            </div>
+            <div class="filter">
+              <i class="fa-solid fa-mountain-city"></i>
+              <p>Iconic city</p>
+            </div>
+            <div class="filter">
+              <i class="fa-solid fa-volleyball"></i>
+              <p>Stadium</p>
+            </div>
+          </div>
+          <div class="form-check-reverse form-switch ms-2">
+            <div
+              class="d-flex align-items-center flex-nowrap gap-2"
+              style="min-width: 0; max-width: 100%; overflow-x: auto"
+            >
+              <input
+                class="form-check-input "
+                type="checkbox"
+                role="switch"
+                id="switchCheckDefault"
+              
+                style="margin-right: 0.5em"
+              />
+              <label
+                class="form-check-label mb-0"
+                for="switchCheckDefault"
+                style="
+                  font-weight: 600;
+                  color: #4b2994;
+                  background: rgba(255, 255, 255, 0.7);
+                  padding: 0.3em;
+                  border-radius: 1em;
+                  box-shadow: 0 2px 8px rgba(75, 41, 148, 0.08);
+                  transition: background 0.2s;
+                  cursor: pointer;
+                  white-space: nowrap;                
+                  overflow: hidden;
+                  
+                "
+              >
+                <i class="fa-solid fa-receipt me-2 text-primary"></i>
+                Display total after taxes
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">
+        <% for(let listing of allListing) { %>
+        <div class="col">
+          <a
+            href="/listings/<%=listing._id%>"
+            class="listing-link text-decoration-none"
+          >
+            <div
+              class="card h-100 shadow-lg border-0 card-hover rounded-4 overflow-hidden position-relative"
+            >
+              <div class="img-container position-relative">
+                <img
+                  src="<%=listing.image.url%>"
+                  class="card-img-top listing-img"
+                  alt="card image"
+                />
+                <span
+                  class="badge bg-gradient-primary price-badge position-absolute top-0 end-0 m-3 shadow"
+                  >&#8377; <%=listing.price%> / Night</span
+                >
+              </div>
+              <div class="card-body pb-3">
+                <h5 class="card-title text-dark mb-2 fw-bold">
+                  <%=listing.title%>
+                </h5>
+                <p
+                  class="card-text text-secondary mb-1"
+                  style="min-height: 2.5em"
+                >
+                  <%=listing.description?.slice(0, 60) || '' %>...
+                </p>
+                <div
+                  class="d-flex justify-content-between align-items-center mt-3"
+                >
+                  <span class="badge bg-info text-dark px-3 py-2 fs-6"
+                    ><i class="fa fa-map-marker-alt me-1"></i
+                    ><%=listing.location%></span
+                  >
+                  <i class="tax-info">+ 18%GST</i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click", () => {
+    let taxInfo = document.querySelectorAll(".tax-info");
+    //  console.log(taxInfo);
+    taxInfo.forEach((info) => {
+      if (info.style.display != "inline") {
+        info.style.display = "inline";
+      } else {
+        info.style.display = "none";
+      }
+    });
+  });
+</script>

@@ -1,0 +1,53 @@
+/* Show page specific styles scoped to .show-page */
+.show-main {
+  display: flex;
+  justify-content: center;
+}
+.show-main .first {
+  border: none;
+  width: 67%;
+  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+}
+
+
+.show-page .delete-btn {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.show-page .delete-btn:hover {
+  background: #dc3545;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(220, 53, 69, 0.18);
+  transform: translateY(-2px) scale(1.05);
+}
+.show-page .card-img-top {
+  height: 20rem;
+  border-radius: 1rem;
+}
+.show-page .review-card {
+  box-shadow: 0 4px 24px rgba(56, 182, 255, 0.13);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1.25rem;
+}
+.show-page .review-card:hover {
+  box-shadow: 0 12px 32px rgba(56, 182, 255, 0.22);
+  transform: translateY(-6px) scale(1.03);
+}
+.show-page .review-card .card-body {
+  padding: 1.5rem 1rem 1.5rem 1rem !important;
+}
+/* .show-page .starability-sm {
+  width: 90px !important;
+  height: 18px !important; */
+/* } */
+.show-page .starability-sm.starability-result:after {
+  height: 18px !important;
+}
+.show-page #map {
+  height: 320px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}

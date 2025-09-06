@@ -1,0 +1,38 @@
+/* Edit page specific styles */
+.edit-page-body {
+  background: #f8fafc;
+}
+.edit-page .card {
+  border-radius: 1.5rem;
+  padding: 2rem 2.5rem;
+  background: #fff;
+}
+.edit-page .form-label {
+  font-weight: 600;
+  color: #2d3748;
+}
+.edit-page .form-control {
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  font-size: 1.05rem;
+  transition: border-color 0.2s;
+}
+.edit-page .form-control:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 0.15rem rgba(49, 130, 206, 0.15);
+}
+.edit-page .btn-success {
+  background: linear-gradient(90deg, #38b2ac 0%, #3182ce 100%);
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  padding: 0.6em 2em;
+  transition: background 0.2s, transform 0.2s;
+}
+.edit-page .btn-success:hover {
+  background: linear-gradient(90deg, #3182ce 0%, #38b2ac 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+.edit-page h2 {
+  letter-spacing: 1px;
+}

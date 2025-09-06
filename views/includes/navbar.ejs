@@ -1,0 +1,180 @@
+<nav class="navbar navbar-expand-md custom-navbar sticky-top shadow-lg">
+  <!-- Flash Messages -->
+
+  <div class="container-fluid px-4 py-2">
+    <a
+      class="navbar-brand d-flex align-items-center gap-2 text-gradient fw-bold"
+      href="/listings"
+      style="
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1.7rem;
+        letter-spacing: 2px;
+      "
+    >
+      <i class="fa-regular fa-compass fa-lg me-1"></i>
+      <span class="brand-text">WonderLust</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto gap-3 align-items-center">
+        <a class="nav-link active px-3" href="/listings">Home</a>
+        <a
+          class="nav-link btn btn-gradient px-3 text-white add-btn shadow-sm"
+          href="/listings/new"
+        >
+          <i class="fa fa-plus me-1"></i> Add New Listing
+        </a>
+        <form
+          class="d-flex align-items-center ms-2 search-glass"
+          role="search"
+          style="max-width: 260px"
+        >
+          <input
+            class="form-control me-2 rounded-pill shadow-sm border-0"
+            type="search"
+            placeholder="Find your destination"
+            style="background: rgba(255, 255, 255, 0.7); font-size: 1rem"
+          />
+          <button
+            class="btn btn-search d-flex align-items-center justify-content-center"
+            type="submit"
+          >
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <div class="navbar-nav ms-auto gap-2">
+        <% if(!currentUser){%>
+        <a
+          class="btn btn-primary text-white px-3 rounded-pill shadow-sm"
+          href="/signup"
+          >Sign Up</a
+        >
+        <a
+          class="btn btn-outline-primary px-3 rounded-pill shadow-sm"
+          href="/login"
+          >Login</a
+        >
+        <% }%> <% if(currentUser){%>
+        <a
+          class="btn btn-danger text-white px-3 rounded-pill shadow-sm"
+          href="/logout"
+          >Logout</a
+        >
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+<style>
+  .custom-navbar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px) saturate(1.2);
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 1.08rem;
+    z-index: 100;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  }
+  .navbar-brand {
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    transition: color 0.2s, text-shadow 0.2s;
+    background: linear-gradient(90deg, #38b2ac 0%, #3182ce 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 8px rgba(49, 130, 206, 0.08);
+  }
+  .navbar-brand:hover {
+    text-shadow: 0 4px 16px rgba(49, 130, 206, 0.18);
+    filter: brightness(1.1);
+  }
+  .nav-link {
+    color: #2d3748 !important;
+    border-radius: 1.5rem;
+    padding: 0.5em 1.2em;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+  .nav-link.active,
+  .nav-link:hover {
+    background: linear-gradient(90deg, #e2e8f0 0%, #c3dafe 100%);
+    color: #3182ce !important;
+    box-shadow: 0 2px 8px rgba(49, 130, 206, 0.08);
+  }
+
+  .btn-gradient {
+    background: linear-gradient(90deg, #38b2ac 0%, #3182ce 100%);
+    border: none;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(49, 130, 206, 0.08);
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(90deg, #3182ce 0%, #38b2ac 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(49, 130, 206, 0.18);
+  }
+
+  /* Flash Message Styles */
+  .alert {
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: none;
+    font-weight: 500;
+  }
+
+  .alert-success {
+    background: linear-gradient(90deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+    border-left: 4px solid #10b981;
+  }
+
+  .btn-close {
+    filter: brightness(0.7);
+  }
+  .btn-search {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(221, 36, 118, 0.08);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .btn-search:hover {
+    background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(221, 36, 118, 0.18);
+    transform: translateY(-2px) scale(1.08);
+  }
+  .rounded-pill {
+    border-radius: 2rem !important;
+  }
+  .shadow-sm {
+    box-shadow: 0 2px 8px rgba(49, 130, 206, 0.08) !important;
+  }
+  .shadow-lg {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07) !important;
+  }
+  /* .fa-magnifying-glass {
+    display: inline;
+  } */
+</style>
