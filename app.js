@@ -81,9 +81,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send(`Welcome to home page `);
-});
+
 
 app.get("/fakeUser", async (req, res) => {
   const user = new User({
