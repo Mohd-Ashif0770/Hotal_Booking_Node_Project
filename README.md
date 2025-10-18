@@ -20,7 +20,7 @@ Check it out here: [Hotel Booking App](https://hotal-booking-node-project.onrend
 ## Technologies Used
 - **Backend:** Node.js, Express.js, MongoDB (Mongoose)
 - **Frontend:** EJS templates, Bootstrap 5, Font Awesome
-- **Other:** Express-session for authentication, NodeMailer (if implemented)
+- **Other:** Express-session for authentication
 
 ---
 
