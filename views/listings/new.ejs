@@ -1,91 +1,104 @@
 <% layout("layouts/boilerplate") %>
-<body class="new-page-body">
-  <div class="new-page">
-    <div
-      class="row justify-content-center align-items-center min-vh-100 bg-light"
-    >
-      <div class="col-lg-7 col-md-9">
-        <div class="card shadow-lg border-0 rounded-4 p-4">
-          <h2 class="fw-bold text-center text-primary mb-4">
-            Create a New Listing
-          </h2>
-          <form
-            action="/listings"
-            method="post"
-            novalidate
-            class="needs-validation"
-            enctype="multipart/form-data"
-          >
-            <div class="mb-3">
-              <label class="form-label">Title</label>
+
+<div class="container py-5">
+  <div class="row justify-content-center align-items-center min-vh-100 ">
+    <div class="col-lg-7 col-md-9">
+      <div class="card shadow border-0 rounded-4 p-4 p-md-5">
+        <h2 class="fw-bold text-center text-primary mb-4">
+          <i class="fa-solid fa-house-circle-check me-2"></i> Create a New Listing
+        </h2>
+
+        <form
+          action="/listings"
+          method="post"
+          novalidate
+          class="needs-validation"
+          enctype="multipart/form-data"
+        >
+          <!-- Title -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Title</label>
+            <input
+              type="text"
+              name="Listing[title]"
+              class="form-control"
+              placeholder="e.g. Cozy Beachside Villa"
+              required
+            />
+            <div class="invalid-feedback">Please enter a title</div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Description</label>
+            <textarea
+              name="Listing[description]"
+              rows="4"
+              class="form-control"
+              placeholder="Describe your property, amenities, and highlights"
+              required
+            ></textarea>
+            <div class="invalid-feedback">Please enter a valid description</div>
+          </div>
+
+          <!-- Image -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Upload Listing Image</label>
+            <input
+              type="file"
+              name="Listing[image]"
+              class="form-control"
+            />
+          </div>
+
+          <!-- Price & Location -->
+          <div class="row">
+            <div class="mb-3 col-md-4">
+              <label class="form-label fw-semibold">Price</label>
               <input
-                type="text"
-                name="Listing[title]"
+                type="number"
+                name="Listing[price]"
                 class="form-control"
-                placeholder="e.g. Cozy Beachside Villa"
+                placeholder="e.g. 1200"
                 required
               />
-              <div class="invalid-feedback">Please enter a title</div>
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Description</label>
-              <textarea
-                name="Listing[description]"
-                class="form-control"
-                required
-                placeholder="Describe your property, amenities, and highlights (e.g. Spacious 2BHK with sea view, free WiFi, breakfast included)"
-              ></textarea>
-              <div class="invalid-feedback">
-                Please enter a valid description
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Upload Listing Image</label>
-              <input type="file" name="Listing[image]" class="form-control" />
-            </div>
-            <div class="row">
-              <div class="mb-3 col-md-4">
-                <label for="" class="form-label">Price</label>
-                <input
-                  type="number"
-                  name="Listing[price]"
-                  class="form-control"
-                  placeholder="e.g. 1200"
-                  required
-                />
-                <div class="invalid-feedback">Please enter a valid price</div>
-              </div>
-
-              <div class="mb-3 col-md-8">
-                <label for="" class="form-label">Location</label>
-                <input
-                  type="text"
-                  name="Listing[location]"
-                  class="form-control"
-                  placeholder="e.g. Surat, Gujarat"
-                  required
-                />
-                <div class="invalid-feedback">
-                  Please enter a valid location
-                </div>
-              </div>
+              <div class="invalid-feedback">Please enter a valid price</div>
             </div>
 
-            <div class="mb-3">
-              <label for="" class="form-label">Country</label>
+            <div class="mb-3 col-md-8">
+              <label class="form-label fw-semibold">Location</label>
               <input
                 type="text"
-                name="Listing[country]"
+                name="Listing[location]"
                 class="form-control"
-                placeholder="e.g. India"
+                placeholder="e.g. Surat, Gujarat"
                 required
               />
-              <div class="invalid-feedback">Please enter a valid country</div>
+              <div class="invalid-feedback">Please enter a valid location</div>
             </div>
-            <button class="btn btn-primary mb-3">Add Listing</button>
-          </form>
-        </div>
+          </div>
+
+          <!-- Country -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Country</label>
+            <input
+              type="text"
+              name="Listing[country]"
+              class="form-control"
+              placeholder="e.g. India"
+              required
+            />
+            <div class="invalid-feedback">Please enter a valid country</div>
+          </div>
+
+          <!-- Button -->
+          <div class="text-center">
+            <button class="btn btn-primary btn-lg px-5">
+              <i class="fa-solid fa-plus-circle me-2"></i> Add Listing
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-</body>
+</div>

@@ -81,8 +81,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 app.get("/fakeUser", async (req, res) => {
   const user = new User({
     email: "fake2@gmail.com",
