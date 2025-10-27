@@ -2,10 +2,15 @@
   <div class="container-fluid px-4 py-2">
     
     <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-primary" href="/listings">
-      <i class="fa-regular fa-compass fa-lg"></i>
-      <span>WonderLust</span>
-    </a>
+  <a href="/listings" 
+   class="navbar-brand d-flex align-items-center gap-2 fw-bold"
+   style="color: #e63946;">
+  <i class="fa-regular fa-compass fa-xl" style="color: #e63946;"></i>
+  <span class="fs-5">WonderLust</span>
+</a>
+
+
+
 
     <!-- Toggler -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -17,13 +22,13 @@
       <div class="navbar-nav ms-auto align-items-center gap-2">
 
         <!-- Links -->
-        <a class="nav-link active" href="/listings">Home</a>
+        <a class="nav-link active" id="home-btn" href="/listings">Home</a>
         <a class="btn btn-primary text-white rounded-pill shadow-sm d-flex align-items-center" href="/listings/new">
           <i class="fa fa-plus me-1"></i> Add Listing
         </a>
 
         <!-- Search -->
-        <form class="d-flex ms-2" role="search" style="max-width: 250px;">
+        <form class="d-flex ms-2 search-container" role="search" style="max-width: 250px">
           <input class="form-control me-2 rounded-pill" type="search" placeholder="Find destination">
           <button class="btn btn-danger rounded-circle d-flex justify-content-center align-items-center" type="submit" style="width:38px; height:38px;">
             <i class="fa fa-search"></i>
