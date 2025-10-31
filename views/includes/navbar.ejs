@@ -1,48 +1,78 @@
 <nav class="navbar navbar-expand-md sticky-top bg-light shadow-sm">
   <div class="container-fluid px-4 py-2">
-    
     <!-- Brand -->
-  <a href="/listings" 
-   class="navbar-brand d-flex align-items-center gap-2 fw-bold"
-   style="color: #e63946;">
-  <i class="fa-regular fa-compass fa-xl" style="color: #e63946;"></i>
-  <span class="fs-5">WonderLust</span>
-</a>
-
-
-
+    <a
+      href="/listings"
+      class="navbar-brand d-flex align-items-center gap-2 fw-bold"
+      style="color: #e63946"
+    >
+      <i class="fa-regular fa-compass fa-xl" style="color: #e63946"></i>
+      <span class="fs-5">WonderLust</span>
+    </a>
 
     <!-- Toggler -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Navbar Content -->
     <div class="collapse navbar-collapse" id="navbarContent">
-      <div class="navbar-nav ms-auto align-items-center gap-2">
+      <!-- Centered Links -->
+      <ul class="navbar-nav mx-auto text-center">
+        <li class="nav-item">
+          <a class="btn btn-outline-info  rounded-pill shadow-sm d-none d-md-inline-flex me-2" href="/listings">Home</a>
+          <a class="nav-link d-md-none" href="/listings">Home</a>
+        </li>
+        <li class="nav-item">
+          <!-- Desktop button -->
+          <a
+            href="/listings/new"
+            class="btn btn-info text-white rounded-pill shadow-sm d-none d-md-inline-flex align-items-center"
+          >
+            <i class="fa fa-plus me-1"></i> Add Listing
+          </a>
 
-        <!-- Links -->
-        <a class="nav-link active" id="home-btn" href="/listings">Home</a>
-        <a class="btn btn-primary text-white rounded-pill shadow-sm d-flex align-items-center" href="/listings/new">
-          <i class="fa fa-plus me-1"></i> Add Listing
-        </a>
+          <!-- Mobile link -->
+          <a href="/listings/new" class="nav-link d-md-none">Add Listing</a>
+        </li>
+      </ul>
 
-        <!-- Search -->
-        <form class="d-flex ms-2 search-container" role="search" style="max-width: 250px">
-          <input class="form-control me-2 rounded-pill" type="search" placeholder="Find destination">
-          <button class="btn btn-danger rounded-circle d-flex justify-content-center align-items-center" type="submit" style="width:38px; height:38px;">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
-
-        <!-- Auth Buttons -->
+      <!-- Right-side Auth Buttons -->
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-end mt-2 mt-md-0 text-center">
         <% if(!currentUser) { %>
-          <a class="btn btn-outline-primary rounded-pill ms-2" href="/login">Login</a>
-          <a class="btn btn-primary text-white rounded-pill ms-1" href="/signup">Sign Up</a>
-        <% } else { %>
-          <a class="btn btn-danger text-white rounded-pill ms-2" href="/logout">Logout</a>
-        <% } %>
+        <!-- Desktop buttons -->
+        <a class="btn btn-outline-primary rounded-pill me-2 d-none d-md-inline" href="/login">Login</a>
+        <a class="btn btn-primary text-white rounded-pill d-none d-md-inline" href="/signup">Sign Up</a>
 
+        <!-- Mobile links (stacked) -->
+        <ul class="navbar-nav d-md-none">
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign Up</a>
+          </li>
+        </ul>
+
+        <% } else { %>
+        <!-- Desktop button -->
+        <a class="btn btn-danger text-white rounded-pill d-none d-md-inline" href="/logout">Logout</a>
+
+        <!-- Mobile link -->
+        <ul class="navbar-nav d-md-none">
+          <li class="nav-item">
+            <a class="nav-link text-danger" href="/logout">Logout</a>
+          </li>
+        </ul>
+        <% } %>
       </div>
     </div>
   </div>
