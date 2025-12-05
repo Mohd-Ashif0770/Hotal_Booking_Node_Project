@@ -23,14 +23,19 @@
             <li class="list-group-item"><strong>Country:</strong> <%= listing.country %></li>
           </ul>
 
-          <% if(currentUser && currentUser._id.equals(listing.owner._id)) { %>
-            <div class="d-flex gap-2 mb-3">
-              <a href="/listings/<%= listing._id %>/edit" class="btn btn-warning flex-fill">Edit Listing</a>
-              <form action="/listings/<%= listing._id %>?_method=DELETE" method="post" class="flex-fill">
-                <button class="btn btn-danger w-100">Delete Listing</button>
-              </form>
-            </div>
-          <% } %>
+          <% if (currentUser && currentUser._id.equals(listing.owner._id)) { %>
+  <div class="d-flex gap-2 mb-3">
+    <a href="/listings/<%= listing._id %>/edit" class="btn btn-warning flex-fill">Edit Listing</a>
+    <form action="/listings/<%= listing._id %>?_method=DELETE" method="post" class="flex-fill">
+      <button class="btn btn-danger w-100">Delete Listing</button>
+    </form>
+  </div>
+<% } else { %>
+  <a href="/listings/<%= listing._id %>/book" class="btn btn-primary mt-3">
+    Book Now
+  </a>
+<% } %>
+
         </div>
       </div>
 

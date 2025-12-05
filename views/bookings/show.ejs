@@ -1,0 +1,25 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <h2>Booking Confirmation</h2>
+
+  <div class="card mt-3">
+    <div class="card-body">
+
+      <h5 class="card-title"><%= booking.listing.title %></h5>
+
+      <p class="card-text">
+        <strong>Check-in:</strong> <%= booking.checkIn.toDateString() %><br>
+        <strong>Check-out:</strong> <%= booking.checkOut.toDateString() %><br>
+        <strong>Status:</strong> <%= booking.status %>
+      </p>
+
+      <a href="/listings/<%= booking.listing._id %>" class="btn btn-outline-primary">
+        View Listing
+      </a>
+      <a href="/listings" class="btn btn-link">Back to Listings</a>
+
+    </div>
+  </div>
+</div>
+

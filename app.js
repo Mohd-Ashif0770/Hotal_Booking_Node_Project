@@ -7,6 +7,7 @@ const ejsMate = require("ejs-mate");
 const listingRoute = require("./routes/listingRoute");
 const reviewRoute = require("./routes/reviewRoute");
 const userRoute = require("./routes/userRoute");
+const bookingRoute = require("./routes/bookingRoute");
 const dotenv = require("dotenv");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -92,8 +93,20 @@ app.get("/fakeUser", async (req, res) => {
 
 //! Using routes
 app.use("/listings", listingRoute);
+app.use(bookingRoute);
 app.use("/listings/:id/reviews", reviewRoute);
 app.use("/", userRoute);
+
+// temporary route for testing session
+app.get("/current-user", (req, res) => {
+  console.log("Session user:", req.user);
+  if (req.user) {
+    res.json({ loggedIn: true, user: req.user });
+  } else {
+    res.json({ loggedIn: false });
+  }
+});
+
 
 //! Asynchronous error handling middleware
 app.use((err, req, res, next) => {
