@@ -47,12 +47,13 @@
         <!-- ACTION BUTTONS -->
         <div class="d-flex flex-wrap gap-2 mt-3">
 
-          <a href="/bookings/<%= booking._id %>/edit" 
-             class="btn btn-warning text-white">
-            Edit Booking
-          </a>
+          <form action="/my-bookings/<%= booking._id %>/edit"  >                
+            <button type="submit" class="btn btn-warning text-white">
+              Edit Booking
+            </button>
+          </form>
 
-          <form action="/bookings/<%= booking._id %>?_method=DELETE" 
+          <form action="/my-bookings/<%= booking._id %>?_method=DELETE" 
                 method="POST" 
                 onsubmit="return confirm('Are you sure you want to cancel this booking?')">
             <button type="submit" class="btn btn-danger">
