@@ -32,7 +32,7 @@ module.exports.createBooking = async (req, res) => {
 
   req.flash("success", "Booking created successfully");
   // res.redirect(`/bookings/${booking._id}`);
-  res.redirect(`/listings`);
+  res.redirect(`/my-bookings`);
   // res.send("Booking created");
 };
 
@@ -61,3 +61,23 @@ module.exports.cancelBooking = async (req, res) => {
     res.redirect("/bookings");
   }
 };
+
+module.exports.showBookings = async (req, res) => {
+  const userId = req.user._id;
+
+  const bookings = await Booking.find({ user: userId })
+    .populate("listing")
+    .sort({ createdAt: -1 }); // latest first
+
+  res.render("bookings/index", { bookings });
+};
+
+module.exports.viewBooking= async(req, res)=>{
+  const {id}=req.params;
+  const booking= await Booking.findById(id).populate('listing').populate('user');
+   if (!booking) {
+    req.flash("error", "Booking not found");
+    return res.redirect("/my-bookings");
+  }
+  res.render('bookings/show', {booking});
+}

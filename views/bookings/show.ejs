@@ -1,25 +1,70 @@
 <% layout("layouts/boilerplate") %>
 
 <div class="container mt-4">
-  <h2>Booking Confirmation</h2>
+  <h2 class="mb-4">Booking Details</h2>
 
-  <div class="card mt-3">
-    <div class="card-body">
+  <div class="card shadow-sm p-4">
 
-      <h5 class="card-title"><%= booking.listing.title %></h5>
+    <div class="row">
+      
+      <!-- LEFT: LISTING IMAGE -->
+      <div class="col-md-5 mb-3 mb-md-0">
+        <% if (booking.listing.image && booking.listing.image.url) { %>
+          <img 
+            src="<%= booking.listing.image.url %>" 
+            class="img-fluid rounded shadow-sm"
+            alt="Listing Image"
+            style="object-fit: cover; width: 100%; height: 330px;"
+          >
+        <% } %>
+      </div>
 
-      <p class="card-text">
-        <strong>Check-in:</strong> <%= booking.checkIn.toDateString() %><br>
-        <strong>Check-out:</strong> <%= booking.checkOut.toDateString() %><br>
-        <strong>Status:</strong> <%= booking.status %>
-      </p>
+      <!-- RIGHT: BOOKING INFO -->
+      <div class="col-md-7">
+        
+        <h3 class="fw-bold mb-3"><%= booking.listing.title %></h3>
 
-      <a href="/listings/<%= booking.listing._id %>" class="btn btn-outline-primary">
-        View Listing
-      </a>
-      <a href="/listings" class="btn btn-link">Back to Listings</a>
+        <p class="mb-2">
+          <strong>Start Date:</strong> <%= booking.startDate.toDateString() %>
+        </p>
+
+        <p class="mb-2">
+          <strong>End Date:</strong> <%= booking.endDate.toDateString() %>
+        </p>
+
+        <p class="mb-2">
+          <strong>Price:</strong>
+          <span class="badge bg-warning text-dark"><%= booking.listing.price %>/night</span>
+        </p>
+
+        <p class="mb-3">
+          <!-- <strong>Booked By:</strong> <%= booking.user.username %> -->
+          <strong>Location :</strong> <%= booking.listing.location %>
+        </p>
+
+        <hr>
+
+        <!-- ACTION BUTTONS -->
+        <div class="d-flex flex-wrap gap-2 mt-3">
+
+          <a href="/bookings/<%= booking._id %>/edit" 
+             class="btn btn-warning text-white">
+            Edit Booking
+          </a>
+
+          <form action="/bookings/<%= booking._id %>?_method=DELETE" 
+                method="POST" 
+                onsubmit="return confirm('Are you sure you want to cancel this booking?')">
+            <button type="submit" class="btn btn-danger">
+              Cancel Booking
+            </button>
+          </form>
+
+        </div>
+
+      </div>
 
     </div>
+
   </div>
 </div>
-
