@@ -34,7 +34,7 @@ module.exports.createBooking = async (req, res) => {
   res.redirect(`/my-bookings`);
 };
 
-//! Fetch all Bookings
+//! Fetch all Bookings based on user
 module.exports.showBookings = async (req, res) => {
   const userId = req.user._id;
 

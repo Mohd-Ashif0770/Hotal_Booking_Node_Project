@@ -1,47 +1,67 @@
 <% layout("layouts/boilerplate") %>
 
 <div class="container mt-4">
-  <h2>My Bookings</h2>
+  <h2 class="fw-bold mb-4">My Bookings</h2>
 
   <% if (bookings.length === 0) { %>
-  <p class="text-muted mt-3">You have no bookings yet.</p>
+    <p class="text-muted">You have no bookings yet.</p>
   <% } %>
 
-  <div class="row">
+  <div class="row g-4">
     <% bookings.forEach(b => { %>
-    <div class="col-md-4 mt-3">
-      <div class="card">
-        <% if (b.listing && b.listing.image && b.listing.image.url) { %>
-        <img
-          src="<%= b.listing.image.url %>"
-          class="card-img-top"
-          alt="listing"
-        />
-        <% } %>
 
-        <div class="card-body">
-          <h5 class="card-title"><%= b.listing.title %></h5>
+      <div class="col-md-6 col-lg-4">
+        <div class="card border-0 shadow booking-card h-100 rounded-4 overflow-hidden">
 
-          <p class="card-text mb-1">
-            <strong>Start Date:</strong> <%= b.startDate.toDateString() %>
-          </p>
+          <!-- IMAGE -->
+          <% if (b.listing && b.listing.image && b.listing.image.url) { %>
+            <img src="<%= b.listing.image.url %>" 
+                 class="card-img-top"
+                 alt="Hotel Image"
+                 style="height: 220px; object-fit: cover;">
+          <% } %>
 
-          <p class="card-text mb-1">
-            <strong>End Date:</strong> <%= b.endDate.toDateString() %>
-          </p>
+          <div class="card-body">
 
-          <p class="card-text">
-            <strong>Price:</strong>
-            <!-- <span class="badge bg-info"><%= b.status %></span> -->
-            <span class="badge bg-info"><%= b.listing.price %>/night</span>
-          </p>
+            <h4 class="card-title fw-bold"><%= b.listing.title %></h4>
 
-          <a href="/my-bookings/<%= b._id %>" class="btn btn-primary btn-sm"
-            >View Booking</a
-          >
+            <p class="mb-1">
+              <strong>Start Date:</strong> <%= b.startDate.toDateString() %>
+            </p>
+
+            <p class="mb-1">
+              <strong>End Date:</strong> <%= b.endDate.toDateString() %>
+            </p>
+
+            <p class="my-2">
+              <strong>Price:</strong> 
+              <span class="badge bg-info text-dark px-3 py-2 rounded-pill">
+                <%= b.listing.price %>/night
+              </span>
+            </p>
+
+            <a href="/my-bookings/<%= b._id %>" class="btn btn-primary w-100 mt-3 rounded-3">
+              View Booking
+            </a>
+
+          </div>
+
         </div>
       </div>
-    </div>
+
     <% }) %>
   </div>
+
 </div>
+
+<style>
+/* Smooth hover shadow effect */
+.booking-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+</style>

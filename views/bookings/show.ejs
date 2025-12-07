@@ -1,71 +1,100 @@
 <% layout("layouts/boilerplate") %>
 
-<div class="container mt-4">
-  <h2 class="mb-4">Booking Details</h2>
+<div class="container mt-5">
+  <h2 class="fw-bold mb-4">Booking Details</h2>
 
-  <div class="card shadow-sm p-4">
-
-    <div class="row">
-      
-      <!-- LEFT: LISTING IMAGE -->
-      <div class="col-md-5 mb-3 mb-md-0">
-        <% if (booking.listing.image && booking.listing.image.url) { %>
-          <img 
-            src="<%= booking.listing.image.url %>" 
-            class="img-fluid rounded shadow-sm"
-            alt="Listing Image"
-            style="object-fit: cover; width: 100%; height: 330px;"
-          >
-        <% } %>
+  <div class="card shadow-sm border-0 rounded-4 p-4 booking-details-card">
+    <div class="row align-items-center">
+      <!-- LEFT : IMAGE -->
+      <div class="col-md-5">
+        <img
+          src="<%= booking.listing.image.url %>"
+          class="img-fluid rounded-4 shadow-sm booking-image"
+          alt="hotel image"
+          style="object-fit: cover; height: 320px; width: 100%"
+        />
       </div>
 
-      <!-- RIGHT: BOOKING INFO -->
-      <div class="col-md-7">
-        
-        <h3 class="fw-bold mb-3"><%= booking.listing.title %></h3>
+      <!-- RIGHT : DETAILS -->
+      <div class="col-md-7 mt-4 mt-md-0">
+        <h2 class="fw-bold mb-3"><%= booking.listing.title %></h2>
 
-        <p class="mb-2">
-          <strong>Start Date:</strong> <%= booking.startDate.toDateString() %>
-        </p>
+        <div class="mb-2">
+          <strong>Start Date:</strong>
+          <span class="text-muted"
+            ><%= booking.startDate.toDateString() %></span
+          >
+        </div>
 
-        <p class="mb-2">
-          <strong>End Date:</strong> <%= booking.endDate.toDateString() %>
-        </p>
+        <div class="mb-2">
+          <strong>End Date:</strong>
+          <span class="text-muted"><%= booking.endDate.toDateString() %></span>
+        </div>
 
-        <p class="mb-2">
+        <div class="mb-2">
           <strong>Price:</strong>
-          <span class="badge bg-warning text-dark"><%= booking.listing.price %>/night</span>
-        </p>
+          <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fs-6">
+            <%= booking.listing.price %>/night
+          </span>
+        </div>
 
-        <p class="mb-3">
-          <!-- <strong>Booked By:</strong> <%= booking.user.username %> -->
-          <strong>Location :</strong> <%= booking.listing.location %>
-        </p>
+        <div class="mb-3">
+          <strong>Location:</strong>
+          <span class="text-muted"><%= booking.listing.location %></span>
+        </div>
 
-        <hr>
+        <hr class="my-4" />
 
-        <!-- ACTION BUTTONS -->
-        <div class="d-flex flex-wrap gap-2 mt-3">
+        <!-- BUTTONS -->
+        <div class="d-flex flex-wrap gap-3">
+          <a
+            href="/my-bookings/<%= booking._id %>/edit"
+            class="btn btn-warning px-4 py-2 rounded-3"
+          >
+            Edit Booking
+          </a>
 
-          <form action="/my-bookings/<%= booking._id %>/edit"  >                
-            <button type="submit" class="btn btn-warning text-white">
-              Edit Booking
-            </button>
-          </form>
-
-          <form action="/my-bookings/<%= booking._id %>?_method=DELETE" 
-                method="POST" 
-                onsubmit="return confirm('Are you sure you want to cancel this booking?')">
-            <button type="submit" class="btn btn-danger">
+          <form
+            action="/my-bookings/<%= booking._id %>?_method=DELETE"
+            method="POST"
+            onsubmit="return confirm('Are you sure you want to cancel this booking?');"
+          >
+            <button class="btn btn-danger px-4 py-2 rounded-3">
               Cancel Booking
             </button>
           </form>
-
         </div>
-
       </div>
-
     </div>
-
   </div>
 </div>
+
+<style>
+  /* Smooth card animation */
+  .booking-details-card {
+    transition: 0.25s ease;
+    background: #ffffff;
+  }
+
+  .booking-details-card:hover {
+    box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Image hover zoom effect */
+  .booking-image {
+    transition: transform 0.3s ease;
+  }
+
+  .booking-image:hover {
+    transform: scale(1.03);
+  }
+
+  /* Button hover polish */
+  .btn-warning:hover {
+    background-color: #e0a800;
+  }
+
+  .btn-danger:hover {
+    opacity: 0.9;
+  }
+</style>
