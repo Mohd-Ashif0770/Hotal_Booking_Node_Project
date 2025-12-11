@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const connectDB= require("./config/db")
 const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
@@ -15,6 +16,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const User = require("./models/user");
 const LocalStrategy = require("passport-local");
+const db_url = process.env.ATLASDB_URL;
+const port = process.env.PORT;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -23,20 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 dotenv.config();
-const port = process.env.PORT;
-const db_url = process.env.ATLASDB_URL;
 
-//! Creating connection with db
-main()
-  .then(() => {
-    console.log("Connection created!");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-async function main() {
-  await mongoose.connect(db_url);
-}
+
 
 const store = MongoStore.create({
   mongoUrl: db_url,
@@ -82,14 +73,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/fakeUser", async (req, res) => {
-  const user = new User({
-    email: "fake2@gmail.com",
-    username: "fakeUser2",
-  });
-  const newUser = await User.register(user, "password12345"); //register is a static method added by passport-local-mongoose to register new user
-  res.send(newUser);
-});
+
 
 //! Using routes
 app.use("/listings", listingRoute);
@@ -98,14 +82,14 @@ app.use("/listings/:id/reviews", reviewRoute);
 app.use("/", userRoute);
 
 // temporary route for testing session
-app.get("/current-user", (req, res) => {
-  console.log("Session user:", req.user);
-  if (req.user) {
-    res.json({ loggedIn: true, user: req.user });
-  } else {
-    res.json({ loggedIn: false });
-  }
-});
+// app.get("/current-user", (req, res) => {
+//   console.log("Session user:", req.user);
+//   if (req.user) {
+//     res.json({ loggedIn: true, user: req.user });
+//   } else {
+//     res.json({ loggedIn: false });
+//   }
+// });
 
 
 //! Asynchronous error handling middleware
@@ -114,6 +98,7 @@ app.use((err, req, res, next) => {
   res.status(status).render("listings/error.ejs", { err });
 });
 
-app.listen(port, () => {
+app.listen(port, async() => {
+   await connectDB();
   console.log(`Server is running on port ${port}`);
 });

@@ -63,6 +63,7 @@ module.exports.viewBooking = async (req, res) => {
 module.exports.renderEditBooking = async (req, res) => {
   const booking = await Booking.findById(req.params.id);
   res.render("bookings/editBooking", { booking });
+  console.log("working");
 };
 
 module.exports.editBooking = async (req, res) => {
