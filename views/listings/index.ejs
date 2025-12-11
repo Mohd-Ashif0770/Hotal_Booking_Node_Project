@@ -1,0 +1,72 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container py-5">
+  <!-- Page Title -->
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-primary">
+      <i class="fa-solid fa-hotel me-2"></i> Explore All Listings
+    </h2>
+    <p class="text-muted">Find your perfect stay from the latest listings</p>
+  </div>
+
+  <!-- Listing Cards -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% allListing.forEach((listing, index) => { %>
+    <div class="col">
+      <a
+        href="/listings/<%= listing._id %>"
+        class="text-decoration-none text-dark"
+      >
+        <div style="box-shadow: 5px 6px 15px rgba(0, 0, 0, 0.25)"
+          class="card h-100 border-0 shadow-md rounded-4 overflow-hidden bg-light"
+        >
+          <!-- Image Section -->
+          <div class="ratio ratio-4x3">
+            <img
+              src="<%= (listing.image && listing.image.url) ? listing.image.url : 'https://via.placeholder.com/400x300?text=No+Image' %>"
+              class="img-fluid object-fit-cover"
+              alt="<%= listing.title %>"
+            />
+          </div>
+
+          <!-- Price Badge -->
+          <span
+            class="position-absolute top-0 end-0 m-3 badge bg-primary bg-gradient rounded-pill px-3 py-2 fs-6 fw-semibold shadow-sm"
+          >
+            ₹<%= (typeof listing.price === 'number'
+              ? listing.price.toLocaleString('en-IN')
+              : listing.price || '—') %> / Night
+          </span>
+
+          <!-- Card Body -->
+          <div class="card-body py-4">
+            <h5 class="card-title fw-bold mb-2 text-dark">
+              <%= listing.title %>
+            </h5>
+
+            <p class="card-text text-muted small mb-3">
+              <%= (listing.description && listing.description.slice(0, 90))
+              || 'No description available' %>...
+            </p>
+
+            <div
+              class="d-flex justify-content-between align-items-center border-top pt-3"
+            >
+              <span
+                class="badge bg-info bg-gradient text-white rounded-pill px-3 py-2"
+              >
+                <i class="fa-solid fa-location-dot me-1"></i>
+                <%= listing.location %>
+              </span>
+
+              <small class="text-muted fst-italic opacity-75">
+                +18% GST
+              </small>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% }) %>
+  </div>
+</div>

@@ -1,28 +1,35 @@
+// models/booking.js
 const mongoose = require("mongoose");
+const Listing = require("./listing");
+const User = require("./user");
 
 const bookingSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true
+    required: true,
   },
   listing: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Listing",
-    required: true
+    required: true,
   },
-  checkIn: {
+  startDate: {
     type: Date,
-    required: true
+    required: true, 
   },
-  checkOut: {
+  endDate: {
     type: Date,
-    required: true
+    required: true,
   },
-  status: {
+  bookingDate: {
+    type: Date,
+    default: Date.now,
+  },
+    status: {
     type: String,
     default: "pending"
   }
-}, { timestamps: true });
+},  { timestamps: true });
 
 module.exports = mongoose.model("Booking", bookingSchema);
